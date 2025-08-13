@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AlertTriangle, Home, List, Presentation, TrendingUp, Settings, Plus, Moon, Sun, LogOut } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
-import { useDarkMode } from "@/hooks/useDarkMode";
+import { AlertTriangle, Home, List, Presentation, TrendingUp, Settings, Plus, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -16,8 +14,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const Dashboard = () => {
-  const { user, profile, signOut } = useAuth();
-  const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [profileData, setProfileData] = useState<any>(null);
   const [companyData, setCompanyData] = useState<any>(null);
 
@@ -66,15 +62,6 @@ const Dashboard = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleDarkMode}
-              className="h-9 w-9"
-            >
-              {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            </Button>
-
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-9 w-9 rounded-full">
@@ -95,7 +82,7 @@ const Dashboard = () => {
                 <DropdownMenuItem>View Profile</DropdownMenuItem>
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => signOut()}>
+                <DropdownMenuItem>
                   <LogOut className="mr-2 h-4 w-4" />
                   Logout
                 </DropdownMenuItem>
